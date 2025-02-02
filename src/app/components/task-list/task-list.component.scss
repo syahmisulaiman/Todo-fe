@@ -1,39 +1,50 @@
 mat-card {
-    padding: 20px;
-    width: 400px;
-    margin: auto;
-  }
-  
-  .task-input {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-  }
-  
-  .completed {
-    text-decoration: line-through;
-    color: gray;
-  }
-  
-  .success-snackbar {
-    background-color: #4CAF50;
-    color: white;
-  }
-  
-  .error-snackbar {
-    background-color: #f44336;
-    color: white;
-  }
-  
+  padding: 20px;
+  width: 400px;
+  margin: auto;
+}
+
+.task-container {
+  margin-top: 80px;
+}
+
+.task-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.button-add {
+  height: 55px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.success-snackbar {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.error-snackbar {
+  background-color: #f44336;
+  color: white;
+}
+
+h2 {
+  text-align: center;  
+}

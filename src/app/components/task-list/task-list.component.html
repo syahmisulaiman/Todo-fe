@@ -1,36 +1,35 @@
-<mat-card>
-    <h2>Your Tasks List</h2>
-  
-    <div class="task-input">
-      <mat-form-field>
-        <input matInput placeholder="Task to do" [(ngModel)]="newTask.title">
-      </mat-form-field>
-  
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Due Date" [(ngModel)]="newTask.dueDate">
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary" (click)="addTask()">Add Task</button>
-    </div>
-  
-    <mat-checkbox [(ngModel)]="markAll" (change)="toggleAll()">Mark all as complete</mat-checkbox>
-  
-    <ul>
-      <li *ngFor="let task of tasks">
-        <mat-checkbox [(ngModel)]="task.isCompleted" (change)="updateTask(task)">
-          <span [class.completed]="task.isCompleted">{{ task.title }}</span>
-        </mat-checkbox>
-        <span>{{ task.dueDate | date }}</span>
-        <button mat-icon-button color="warn" (click)="deleteTask(task)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </li>
-    </ul>
-  
-    <p>{{ remainingTasks() }} items left</p>
-  
-    <button mat-raised-button color="accent" (click)="clearCompleted()">Clear completed</button>
-  </mat-card>
-  
+<mat-card class="task-container">
+  <h2>Your Tasks List</h2>
+
+  <div class="task-input">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Task to do" [(ngModel)]="newTask.title">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input matInput [matDatepicker]="picker" placeholder="Due Date" [(ngModel)]="newTask.dueDate">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="button-add" (click)="addTask()">Add Task</button>
+  </div>
+
+  <mat-checkbox [(ngModel)]="markAll" class="full-width" (change)="toggleAll()">Mark all as complete</mat-checkbox>
+
+  <ul>
+    <li *ngFor="let task of tasks">
+      <mat-checkbox [(ngModel)]="task.isCompleted" (change)="updateTask(task)">
+        <span [class.completed]="task.isCompleted">{{ task.title }}</span>
+      </mat-checkbox>
+      <span [class.completed]="task.isCompleted">{{ task.dueDate | date }}</span>
+      <button mat-icon-button color="warn" (click)="deleteTask(task)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </li>
+  </ul>
+
+  <p>{{ remainingTasks() }} items left</p>
+
+  <button mat-raised-button color="accent" (click)="clearCompleted()">Clear completed</button>
+</mat-card>

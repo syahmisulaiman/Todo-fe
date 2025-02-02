@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 interface Task {
@@ -31,7 +31,7 @@ interface Task {
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule 
+    MatSnackBarModule
   ],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss']
@@ -93,7 +93,16 @@ export class TaskListComponent {
   }
 
   clearCompleted() {
-    this.tasks = this.tasks.filter(task => !task.isCompleted);
+    const completedTasks = this.tasks.filter(task => task.isCompleted);
+    completedTasks.forEach(task => {
+      this.http.delete(`${this.apiUrl}/${task.id}`).subscribe({
+        next: () => {
+          this.tasks = this.tasks.filter(t => t.id !== task.id);
+        },
+        error: () => console.error("Error deleting task:", task.id)
+      });
+    });
+
     this.showMessage("Completed tasks cleared!");
   }
 
@@ -103,7 +112,7 @@ export class TaskListComponent {
 
   private showMessage(message: string, isError: boolean = false) {
     this.snackBar.open(message, 'Close', {
-      duration: 3000, 
+      duration: 3000,
       panelClass: isError ? 'error-snackbar' : 'success-snackbar'
     });
   }
